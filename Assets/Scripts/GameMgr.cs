@@ -18,6 +18,8 @@ public class GameMgr : MonoBehaviour
     public List<GameObject> pieces = new List<GameObject>();
     public float currentRotation = 0f;
 
+    public Bounds worldBounds;
+
     private int rotationPositive = 1;
     void Update()
     {
@@ -45,6 +47,7 @@ public class GameMgr : MonoBehaviour
 	void OnEnable ()
     {
         currentRotation = STARTING_ROTATION;
+        worldBounds = new Bounds(new Vector3(15f, 15f, 15f), new Vector3(15f, 15f, 15f));
 		if (_instance == null) {
 			_instance = this;
 			DontDestroyOnLoad(_instance);

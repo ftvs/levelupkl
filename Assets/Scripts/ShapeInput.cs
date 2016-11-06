@@ -61,25 +61,27 @@ public class ShapeInput : MonoBehaviour
         float yDiff = Mathf.Abs(Input.mousePosition.y - prevMousePos.y);
         float xMult = Input.mousePosition.x > prevMousePos.x ? 1 : -1;
         float yMult = Input.mousePosition.y > prevMousePos.y ? 1 : -1;
-        Debug.Log(Input.GetMouseButton(0));
-        Debug.Log(Input.GetMouseButton(1));
-
-        Debug.Log(Input.mousePosition);
-        Debug.Log(prevMousePos);
 
         if (Input.GetMouseButton(1))
         {
             Debug.Log("right click");
 
+            //check for bounds
             if (xDiff >= GameMgr.Instance.MOUSE_THRESHOLD)
             {
-                parentTransform.localPosition = new Vector3(parentTransform.localPosition.x, parentTransform.localPosition.y, parentTransform.localPosition.z + xMult*GameMgr.Instance.GRID_SIZE);
-                prevMousePos = Input.mousePosition;
+                if (withinBounds(parentTransform))
+                {
+                    parentTransform.localPosition = new Vector3(parentTransform.localPosition.x, parentTransform.localPosition.y, parentTransform.localPosition.z + xMult*GameMgr.Instance.GRID_SIZE);
+                    prevMousePos = Input.mousePosition;
+                }
             }
             else if (yDiff >= GameMgr.Instance.MOUSE_THRESHOLD)
             {
-                parentTransform.localPosition = new Vector3(parentTransform.localPosition.x, parentTransform.localPosition.y, parentTransform.localPosition.z + yMult*GameMgr.Instance.GRID_SIZE);
-                prevMousePos = Input.mousePosition;
+                if (withinBounds(parentTransform))
+                {
+                    parentTransform.localPosition = new Vector3(parentTransform.localPosition.x, parentTransform.localPosition.y, parentTransform.localPosition.z + yMult*GameMgr.Instance.GRID_SIZE);
+                    prevMousePos = Input.mousePosition;
+                }
             }
         }
         else if (Input.GetMouseButton(0))
@@ -88,15 +90,34 @@ public class ShapeInput : MonoBehaviour
             Debug.Log(xDiff >= GameMgr.Instance.MOUSE_THRESHOLD);
             if (xDiff >= GameMgr.Instance.MOUSE_THRESHOLD)
             {
-                parentTransform.localPosition = new Vector3(parentTransform.localPosition.x+xMult*GameMgr.Instance.GRID_SIZE, parentTransform.localPosition.y, parentTransform.localPosition.z);
-                Debug.Log("oops");
-                prevMousePos = Input.mousePosition;
+                if (withinBounds(parentTransform))
+                {
+                    parentTransform.localPosition = new Vector3(parentTransform.localPosition.x+xMult*GameMgr.Instance.GRID_SIZE, parentTransform.localPosition.y, parentTransform.localPosition.z);
+                    prevMousePos = Input.mousePosition;
+                }
             }
             if (yDiff >= GameMgr.Instance.MOUSE_THRESHOLD)
             {
-                parentTransform.localPosition = new Vector3(parentTransform.localPosition.x, parentTransform.localPosition.y+yMult*GameMgr.Instance.GRID_SIZE, parentTransform.localPosition.z);
-                prevMousePos = Input.mousePosition;
+                if (withinBounds(parentTransform))
+                {
+                    parentTransform.localPosition = new Vector3(parentTransform.localPosition.x, parentTransform.localPosition.y+yMult*GameMgr.Instance.GRID_SIZE, parentTransform.localPosition.z);
+                    prevMousePos = Input.mousePosition;
+                }
             }
         }
+    }
+
+    bool withinBounds(Transform t)
+    {
+        //check if within bounds in the world
+        //TODO: check if intersecting in the next move
+        foreach (Renderer r in GetComponentsInChildren<Renderer>())
+        {
+            if (r != GetComponent<Renderer>())
+            {
+            
+            }
+        }
+        return true;
     }
 }

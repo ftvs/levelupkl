@@ -7,10 +7,11 @@ public class CheckSolution : MonoBehaviour {
 
 	void OnEnable()
 	{
-		Shape shape = saveShapeToJson.ObjectsToShape();
+		Shape solutionShape = JsonUtility.FromJson<Shape>(solution.text);
+		Shape shape = saveShapeToJson.ObjectsToWorldPositionShape();
 
 		if (Debug.isDebugBuild) {
-			Debug.Log("equals: " + JsonUtility.ToJson(shape).Equals(solution.text));
+			Debug.Log("equals: " + solutionShape.Equals(shape));
 		}
 
 		this.enabled = false;
