@@ -69,6 +69,8 @@ public class SaveShapeToJson : MonoBehaviour {
 
 	public Shape ObjectsToWorldPositionShape()
 	{
+		Quaternion oldRotation = transform.localRotation;
+		transform.localRotation = Quaternion.identity;
 		Shape shape = new Shape();
 
 		int maxWidth = 0;
@@ -76,10 +78,13 @@ public class SaveShapeToJson : MonoBehaviour {
 		int maxHeight = 0;
 
 		GameObject[] children = GameObject.FindGameObjectsWithTag("cube");
+//		Vector3 offset = this.ShapeOffset();
 
 		foreach (GameObject child in children)
 		{
+//			Vector3 normalisedPosition = child.transform.position - offset;
 			Vector3 position = child.transform.position;
+			// apply offsets to dimensions
 			maxWidth = Mathf.Max(maxWidth, (int)position.x);
 			maxDepth = Mathf.Max(maxDepth, (int)position.z);
 			maxHeight = Mathf.Max(maxHeight, (int)position.y);
@@ -91,7 +96,9 @@ public class SaveShapeToJson : MonoBehaviour {
 
 		foreach (GameObject child in children)
 		{
+//			Vector3 normalisedPosition = child.transform.position - offset;
 			Vector3 position = child.transform.position;
+			// apply offset to position
 			int x = (int)position.x;
 			int y = (int)position.y;
 			int z = (int)position.z;
@@ -100,7 +107,35 @@ public class SaveShapeToJson : MonoBehaviour {
 		}
 
 		shape.blocks = shapeArray;
-
+		if (Debug.isDebugBuild) {
+			Debug.Log("generated shape " + JsonUtility.ToJson(shape));
+		}
+		transform.localRotation = oldRotation;
 		return shape;
 	}
+
+//	Vector3 ShapeOffset()
+//	{
+//		Vector3 offsetFromOrigin = new Vector3();
+////		Vector3 maxCoords = new Vector3();
+//
+//		GameObject[] children = GameObject.FindGameObjectsWithTag("cube");
+//
+//		foreach (GameObject child in children)
+//		{
+//			Vector3 worldPosition = child.transform.position;
+//			offsetFromOrigin.x = Mathf.Min(offsetFromOrigin.x, worldPosition.x);
+//			offsetFromOrigin.y = Mathf.Min(offsetFromOrigin.y, worldPosition.y);
+//			offsetFromOrigin.z = Mathf.Min(offsetFromOrigin.z, worldPosition.z);
+//
+//			if (Debug.isDebugBuild) {
+//				Debug.Log("offset: " + offsetFromOrigin);
+//			}
+////			maxCoords.x = Mathf.Max(maxCoords.x, worldPosition.x);
+////			maxCoords.y = Mathf.Max(maxCoords.y, worldPosition.y);
+////			maxCoords.z = Mathf.Mac(maxCoords.z, worldPosition.z);
+//		}
+//
+//		return offsetFromOrigin;
+//	}
 }
