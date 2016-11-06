@@ -5,7 +5,9 @@ using System.Collections.Generic;
 namespace PubSub {
 	public enum Channel {
 		Null = 0,
-		Solved = 10
+		Solved = 10,
+		Collided = 20,
+		NotCollided = 21
 	}
 	
 	public class Signal {
