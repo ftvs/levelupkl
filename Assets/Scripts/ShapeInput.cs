@@ -27,12 +27,17 @@ public class ShapeInput : MonoBehaviour
     void Update()
     {
         if (Input.GetMouseButtonDown(0) || Input.GetMouseButtonDown(1))
-        {            
+        {
             Ray ray = main.ScreenPointToRay(Input.mousePosition);
             bool hasRaycast = Physics.Raycast(ray, out hit);
             bool correctObject = false;
-            if (hit.transform != null)
+
+            if (hit.transform != null) // if hit this transform gameobject
                 correctObject = hit.transform.gameObject == transform.gameObject;
+
+//			if (Debug.isDebugBuild) {
+//				Debug.Log("button down. raycast " + hasRaycast + " hit this object " + correctObject + " hasselected " + GameMgr.Instance.HasSelected());
+//			}
             if (hasRaycast && correctObject && !GameMgr.Instance.HasSelected())
             {
                 prevMousePos = Input.mousePosition;
@@ -41,6 +46,9 @@ public class ShapeInput : MonoBehaviour
                 parentTransform = hit.transform.parent;
                 clicked = hit.transform.gameObject == transform.gameObject;
                 prevMousePos = Input.mousePosition;
+				if (Debug.isDebugBuild) {
+					Debug.Log("selected " + GameMgr.Instance.HasSelected() + " ");
+				}
             }
         }
         else if (clicked && GameMgr.Instance.HasSelected())
@@ -55,6 +63,7 @@ public class ShapeInput : MonoBehaviour
     }
 
     Transform parentTransform;
+
     void MouseDragHandler()
     {
         float xDiff = Mathf.Abs(Input.mousePosition.x - prevMousePos.x);
@@ -64,7 +73,7 @@ public class ShapeInput : MonoBehaviour
 
         if (Input.GetMouseButton(1))
         {
-            Debug.Log("right click");
+//            Debug.Log("right click");
 
             //check for bounds
             if (xDiff >= GameMgr.Instance.MOUSE_THRESHOLD)

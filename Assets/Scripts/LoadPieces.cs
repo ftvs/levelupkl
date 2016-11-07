@@ -20,15 +20,15 @@ public class LoadPieces : MonoBehaviour {
 	{
 		Object[] pieces = Resources.LoadAll("Prefabs/" + levelFolderName);
 
-		int distanceBetweenPieces = 3;
+		int distanceBetweenPieces = 5;
 		int i = 0;
 
 		foreach (Object pieceObj in pieces)
 		{
 			GameObject piece = Instantiate(pieceObj) as GameObject;
-			piece.transform.parent = Camera.main.transform;
+			piece.transform.parent = this.transform;
 			Vector3 pos = piece.transform.localPosition;
-			piece.transform.localPosition = new Vector3(-7, pos.y + (i * distanceBetweenPieces), pos.z);
+			piece.transform.localPosition = new Vector3(-7, 0 + (i * distanceBetweenPieces), pos.z);
 
 			i++;
 		}

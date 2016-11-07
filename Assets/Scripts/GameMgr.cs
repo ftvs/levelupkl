@@ -21,6 +21,7 @@ public class GameMgr : MonoBehaviour
     public Bounds worldBounds;
 
     private int rotationPositive = 1;
+
     void Update()
     {
         if (Input.GetButtonDown("Rotate"))

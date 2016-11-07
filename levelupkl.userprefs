@@ -1,11 +1,15 @@
 ﻿<Properties StartupItem="Assembly-CSharp.csproj">
   <MonoDevelop.Ide.Workspace ActiveConfiguration="Debug" PreferredExecutionTarget="Unity.Instance.Unity Editor" />
-  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/SaveShapeToJson.cs">
+  <MonoDevelop.Ide.Workbench ActiveDocument="Assets/Scripts/LoadPieces.cs">
     <Files>
-      <File FileName="Assets/Scripts/Shape.cs" Line="28" Column="49" />
-      <File FileName="Assets/Scripts/CheckSolution.cs" Line="14" Column="56" />
-      <File FileName="Assets/Scripts/SaveShapeToJson.cs" Line="104" Column="25" />
-      <File FileName="Assets/Scripts/WorldPosition.cs" Line="10" Column="3" />
+      <File FileName="Assets/Scripts/Shape.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/CheckSolution.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/SaveShapeToJson.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/WorldPosition.cs" Line="1" Column="1" />
+      <File FileName="Assets/Scripts/ShapeInput.cs" Line="45" Column="52" />
+      <File FileName="Assets/Scripts/GameMgr.cs" Line="24" Column="2" />
+      <File FileName="Assets/Scripts/LoadPieces.cs" Line="31" Column="53" />
+      <File FileName="Assets/Scripts/MouseDraggable.cs" Line="45" Column="32" />
     </Files>
     <Pads>
       <Pad Id="ProjectPad">
@@ -13,7 +17,7 @@
           <Node name="levelupkl" expanded="True">
             <Node name="Assembly-CSharp" expanded="True">
               <Node name="Scripts" expanded="True">
-                <Node name="SaveShapeToJson.cs" selected="True" />
+                <Node name="LoadPieces.cs" selected="True" />
               </Node>
             </Node>
           </Node>
